@@ -52,13 +52,13 @@ class AnalyticsNode(template.Node):
         
         if code.strip() != '':
             t = loader.get_template(self.template_name)
-            c = Context({
+            context.update({
                 'analytics_code': code,
                 'track_page_load_time': getattr(settings,
                                                 "GOOGLE_ANALYTICS_TRACK_PAGE_LOAD_TIME",
                                                 False),
             })
-            return t.render(c)
+            return t.render(context)
         else:
             return ''
         
